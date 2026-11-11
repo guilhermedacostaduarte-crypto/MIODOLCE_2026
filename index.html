@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#DFD1BC">
+    <title>Mio Dolce | Produtos Artesanais — Catálogo</title>
+    <link rel="icon" href="imagens/logo.png.png">
+    <meta name="description" content="Catálogo Mio Dolce Produtos Artesanais. Velas aromatizadas com cera de coco e escalda-pés feitos à mão com carinho.">
+    
+    <!-- Fontes delicadas e humanizadas -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        :root {
+            /* Paleta Mio Dolce */
+            --beige: #DFD1BC;
+            --gold: #E0B76F;
+            --terracotta: #AD6B3E;
+            --terracotta-dark: #8e552e;
+            --olive: #7C7960;
+            --brown-dark: #473F2A;
+
+            --bg-cream: #FAF7F2;
+            --card-bg: #FFFFFF;
+            --whatsapp: #25D366;
+            --whatsapp-dark: #1ebe5b;
+            --radius: 20px;
+            --transition: 0.3s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--bg-cream);
+            color: var(--brown-dark);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        img { display: block; max-width: 100%; height: auto; -webkit-user-drag: none; }
+        .container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+
+        /* CABEÇALHO ARTESANAL E HUMANIZADO */
+        .header-vitrine {
+            text-align: center;
+            padding: 44px 20px 28px;
+            background: linear-gradient(180deg, rgba(223, 209, 188, 0.45) 0%, rgba(250, 247, 242, 0) 100%);
+        }
+        .logo-img {
+            max-width: 190px;
+            height: auto;
+            margin: 0 auto 14px;
+        }
+        .logo-fallback {
+            display: none;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.6rem;
+            font-weight: 700;
+            color: var(--brown-dark);
+            letter-spacing: 0.08em;
+            margin-bottom: 8px;
+        }
+        .boas-vindas {
+            max-width: 540px;
+            margin: 0 auto;
+            font-size: 1rem;
+            color: var(--olive);
+            font-weight: 400;
+        }
+        .boas-vindas strong {
+            color: var(--terracotta);
+            font-weight: 700;
+        }
+
+        /* FILTROS DELICADOS */
+        .filtros {
+            padding: 12px 0 32px;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(250, 247, 242, 0.92);
+            backdrop-filter: blur(8px);
+        }
+        .filtro-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .filtro-btn {
+            padding: 9px 22px;
+            border: 1px solid var(--beige);
+            background: var(--card-bg);
+            color: var(--brown-dark);
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        .filtro-btn:hover {
+            border-color: var(--terracotta);
+            color: var(--terracotta);
+        }
+        .filtro-btn.ativo {
+            background: var(--terracotta);
+            border-color: var(--terracotta);
+            color: #fff;
+            box-shadow: 0 4px 12px rgba(173, 107, 62, 0.25);
+        }
+
+        /* GRADE DO CATÁLOGO */
+        .catalogo {
+            padding: 10px 0 70px;
+        }
+        .catalogo-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 28px;
+        }
+
+        /* CARD DO PRODUTO */
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid rgba(223, 209, 188, 0.7);
+            box-shadow: 0 8px 24px rgba(71, 63, 42, 0.05);
+            transition: transform var(--transition), box-shadow var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 32px rgba(71, 63, 42, 0.1);
+        }
+
+        /* CARROSSEL DE IMAGENS */
+        .carousel {
+            position: relative;
+            width: 100%;
+            height: 290px;
+            background-color: #F5EFE6;
+            overflow: hidden;
+            user-select: none;
+            touch-action: pan-y;
+        }
+        .carousel-track {
+            display: flex;
+            height: 100%;
+            transition: transform 0.35s ease;
+        }
+        .carousel-slide {
+            min-width: 100%;
+            height: 100%;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 36px;
+            height: 36px;
+            border: none;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--brown-dark);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            opacity: 0;
+            transition: opacity var(--transition);
+            z-index: 2;
+        }
+        .card:hover .carousel-btn { opacity: 1; }
+        .carousel-btn.prev { left: 10px; }
+        .carousel-btn.next { right: 10px; }
+        
+        .carousel-dots {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 6px;
+            z-index: 2;
+        }
+        .carousel-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(71, 63, 42, 0.35);
+            cursor: pointer;
+            padding: 0;
+            transition: var(--transition);
+        }
+        .carousel-dot.ativo {
+            background: var(--terracotta);
+            width: 18px;
+            border-radius: 4px;
+        }
+
+        /* INFORMAÇÕES DO PRODUTO (LIMPO E HUMANIZADO) */
+        .card-body {
+            padding: 22px 20px 18px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+        .card-titulo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--brown-dark);
+            line-height: 1.25;
+            margin-bottom: 6px;
+        }
+        .card-composicao {
+            display: inline-block;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--terracotta);
+            margin-bottom: 12px;
+        }
+        .card-essencias {
+            font-size: 0.88rem;
+            color: var(--olive);
+            background: var(--bg-cream);
+            padding: 12px 14px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            line-height: 1.5;
+            border: 1px solid rgba(223, 209, 188, 0.5);
+        }
+        .card-essencias strong {
+            color: var(--brown-dark);
+            display: block;
+            font-size: 0.82rem;
+            margin-bottom: 2px;
+        }
+        .card-preco {
+            margin-top: auto;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--brown-dark);
+            margin-bottom: 14px;
+        }
+
+        /* BOTÃO WHATSAPP DO CARD */
+        .btn-pedir {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: var(--whatsapp);
+            color: #fff;
+            padding: 12px 16px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.92rem;
+            transition: var(--transition);
+            width: 100%;
+            box-shadow: 0 4px 14px rgba(37, 211, 102, 0.25);
+        }
+        .btn-pedir:hover {
+            background: var(--whatsapp-dark);
+            transform: translateY(-1px);
+        }
+        .btn-pedir i {
+            font-size: 1.15rem;
+        }
+
+        /* MENSAGEM ARTESANAL NO FINAL */
+        .nota-artesanal {
+            text-align: center;
+            max-width: 620px;
+            margin: 0 auto 60px;
+            padding: 28px 24px;
+            background: rgba(223, 209, 188, 0.35);
+            border-radius: var(--radius);
+            border: 1px solid var(--beige);
+        }
+        .nota-artesanal h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            color: var(--brown-dark);
+            margin-bottom: 6px;
+        }
+        .nota-artesanal p {
+            font-size: 0.92rem;
+            color: var(--olive);
+            margin-bottom: 16px;
+        }
+        .btn-duvidas {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--terracotta);
+            color: #fff;
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        .btn-duvidas:hover {
+            background: var(--terracotta-dark);
+        }
+
+        /* RODAPÉ SIMPLES */
+        footer {
+            text-align: center;
+            padding: 28px 20px;
+            border-top: 1px solid var(--beige);
+            font-size: 0.85rem;
+            color: var(--olive);
+        }
+
+        /* BOTÃO FLUTUANTE WHATSAPP */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
+        }
+        .whatsapp-float-btn {
+            width: 54px;
+            height: 54px;
+            background: var(--whatsapp);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.7rem;
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+            transition: var(--transition);
+        }
+        .whatsapp-float-btn:hover {
+            transform: scale(1.07);
+            background: var(--whatsapp-dark);
+        }
+
+        /* RESPONSIVO CELULAR E TABLET */
+        @media (max-width: 960px) {
+            .catalogo-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+        }
+        @media (max-width: 600px) {
+            .header-vitrine { padding: 32px 16px 20px; }
+            .logo-img { max-width: 160px; }
+            .catalogo-grid { grid-template-columns: 1fr; gap: 22px; }
+            .carousel { height: 270px; }
+            .carousel-btn { opacity: 1; }
+            .filtro-container {
+                flex-wrap: nowrap;
+                justify-content: flex-start;
+                overflow-x: auto;
+                padding-bottom: 4px;
+                scrollbar-width: none;
+            }
+            .filtro-container::-webkit-scrollbar { display: none; }
+            .filtro-btn { flex-shrink: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="header-vitrine">
+    <div class="container">
+        <!-- Coloque a imagem da sua logo na pasta imagens com o nome logo.png.png -->
+        <img src="imagens/logo.png.png" alt="Mio Dolce Produtos Artesanais" class="logo-img" onerror="this.style.display='none'; document.getElementById('logoFallback').style.display='block';">
+        <div id="logoFallback" class="logo-fallback">MIO DOLCE</div>
+        
+        <p class="boas-vindas">
+            Feito à mão com carinho para perfumar, acolher e transformar os seus momentos de pausa em um ritual de <strong>autocuidado</strong>.
+        </p>
+    </div>
+</header>
+
+<section class="filtros">
+    <div class="container">
+        <div class="filtro-container">
+            <button class="filtro-btn ativo" data-tipo="todos">Todos</button>
+            <button class="filtro-btn" data-tipo="Velas">Velas Aromatizadas</button>
+            <button class="filtro-btn" data-tipo="Natalino">Natalino</button>
+            <button class="filtro-btn" data-tipo="Escalda-pés">Escalda-pés</button>
+        </div>
+    </div>
+</section>
+
+<main class="catalogo container">
+    <div class="catalogo-grid" id="produtosGrid"></div>
+</main>
+
+<section class="container">
+    <div class="nota-artesanal">
+        <h3>Produção 100% Artesanal</h3>
+        <p>Cada vela e escalda-pés é feito individualmente com ingredientes selecionados. Quer ajuda para escolher um aroma ou montar um presente especial?</p>
+        <a href="#" id="atendimentoWhatsapp" target="_blank" class="btn-duvidas">
+            <i class="fab fa-whatsapp"></i> Conversar com a Mio Dolce
+        </a>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p><strong>Mio Dolce</strong> · Produtos Artesanais</p>
+        <p>WhatsApp: (14) 99731-8541 · © <span id="ano"></span></p>
+    </div>
+</footer>
+
+<div class="whatsapp-float">
+    <a href="#" class="whatsapp-float-btn" id="floatWhatsapp" target="_blank" aria-label="WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+</div>
+
+<script>
+    // NÚMERO DO WHATSAPP DA MIO DOLCE
+    const WHATSAPP = '5514997318541';
+
+    // =========================================================================
+    // CADASTRE SEUS PRODUTOS E AS IMAGENS DA SUA PASTA AQUI
+    // =========================================================================
+    const produtos = [
+        {
+            nome: "Vela Artesanal Mio Dolce 190g | Margarida",
+            composicao: "Cera de coco",
+            essencias: "Flor de Figo, Cereja e Avelã, Café, Cascas e Folhas, Lavanda Provence, Jabuticaba",
+            preco: 80.00,
+            imagens: [
+                "imagens/vela-190g-Margarida.jpg.jpeg"
+            ],
+            tipo: "Velas"
+        },
+        {
+            nome: "Vela Artesanal Mio Dolce 65g",
+            composicao: "Cera de coco",
+            essencias: "Flor de Figo, Cereja e Avelã, Café, Cascas e Folhas, Lavanda Provence, Jabuticaba",
+            preco: 32.00,
+            imagens: [
+                "imagens/vela-65g-Ceradecoco.jpg.jpeg"
+            ],
+            tipo: "Velas"
+        },
+        {
+            nome: "Vela Artesanal Mio Dolce 190g",
+            composicao: "Cera de coco",
+            essencias: "Flor de Figo, Cereja e Avelã, Café, Cascas e Folhas, Lavanda Provence, Jabuticaba",
+            preco: 70.00,
+            imagens: [
+                "imagens/vela-190g-Ceradecoco.jpg.jpeg"
+            ],
+            tipo: "Velas"
+        },
+        {
+            nome: "Vela Artesanal Mio Dolce 30g",
+            composicao: "Cera de coco",
+            essencias: "Flor de Figo, Cereja e Avelã, Café, Cascas e Folhas, Lavanda Provence, Jabuticaba",
+            preco: 25.00,
+            imagens: [
+                "imagens/vela-30g-Ceradecoco.jpg.jpeg"
+            ],
+            tipo: "Velas"
+        },
+        {
+            nome: "Vela Artesanal Mio Dolce 120g | Compota Cereja",
+            composicao: "Cera de coco e Parafina em Gel",
+            essencias: "Cereja e Avelã",
+            preco: 45.00,
+            imagens: [
+                "imagens/vela-120g-Ceradecoco.jpg.jpeg"
+            ],
+            tipo: "Velas"
+        },
+        {
+            nome: "Vela Artesanal Mio Dolce 100g | Lata Mandala",
+            composicao: "Cera de coco",
+            essencias: "Flor de Figo, Cereja e Avelã, Café, Cascas e Folhas, Lavanda Provence, Jabuticaba",
+            preco: 38.00,
+            imagens: [
+                "imagens/vela-100g-Ceradecoco.jpg.jpeg"
+            ],
+            tipo: "Velas"
+        },
+        {
+            nome: "Vela Artesanal Mio Dolce 100g | Lata Natal",
+            composicao: "Cera de coco",
+            essencias: "Flor de Figo, Cereja e Avelã, Café, Cascas e Folhas, Lavanda Provence, Jabuticaba",
+            preco: 38.00,
+            imagens: [
+                "imagens/vela-100g-Ceradecoco.jpg.jpeg"
+            ],
+            tipo: "Natalino"
+        },
+        {
+            nome: "Vela Artesanal Mio Dolce 190g | Linha Natal",
+            composicao: "Cera de coco",
+            essencias: "Flor de Figo, Cereja e Avelã, Café, Cascas e Folhas, Lavanda Provence, Jabuticaba",
+            preco: 80.00,
+            imagens: [
+                "imagens/velanatal-190g-Ceradecoco.jpg.jpeg"
+            ],
+            tipo: "Natalino"
+        },
+        {
+            nome: "Vela Artesanal Mio Dolce 65g | Linha Natal",
+            composicao: "Cera de coco",
+            essencias: "Flor de Figo, Cereja e Avelã, Café, Cascas e Folhas, Lavanda Provence, Jabuticaba",
+            preco: 40.00,
+            imagens: [
+                "imagens/velanatal-65g-Ceradecoco.jpg.jpeg"
+            ],
+            tipo: "Natalino"
+        },
+        {
+            nome: "Escalda Pés Mio Dolce 40g | Produto Artesanal",
+            composicao: "Sais relaxantes e ervas selecionadas",
+            aromas: "Calêndula e Jasmim; Calêndula e Alfazema; Camomila e Alecrim",
+            preco: 12.00,
+            imagens: [
+                "imagens/escalda pes-40g.jpg.jpeg"
+            ],
+            tipo: "Escalda-pés"
+        }
+    ];
+
+    let filtroAtivo = 'todos';
+    const grid = document.getElementById('produtosGrid');
+    const filtroBotoes = document.querySelectorAll('.filtro-btn');
+
+    function baseUrl() {
+        var path = window.location.pathname;
+        if (path.endsWith('.html')) {
+            return window.location.origin + path.substring(0, path.lastIndexOf('/') + 1);
+        }
+        if (!path.endsWith('/')) path += '/';
+        return window.location.origin + path;
+    }
+
+    function waLink(texto) {
+        return 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(texto);
+    }
+
+    function urlImagem(src) {
+        if (!src) return '';
+        if (src.indexOf('http://') === 0 || src.indexOf('https://') === 0) return src;
+        var limpo = src.replace(/^\.\//, '');
+        return encodeURI(baseUrl() + limpo).replace(/#/g, '%23');
+    }
+
+    function criarCarousel(id, imagens, nome) {
+        var listaImagens = (Array.isArray(imagens) && imagens.length > 0) ? imagens : ['imagens/sem-foto.jpg'];
+
+        var slides = listaImagens.map(function(src, i) {
+            var caminho = urlImagem(src);
+            var lazyAttr = i === 0 ? '' : ' loading="lazy"';
+            return '<div class="carousel-slide"><img src="' + caminho + '" alt="' + nome + '"' + lazyAttr + ' onerror="this.onerror=null;this.src=\'data:image/svg+xml,' + encodeURIComponent('<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'500\' height=\'500\'><rect fill=\'%23F5EFE6\' width=\'500\' height=\'500\'/><text x=\'50%\' y=\'50%\' text-anchor=\'middle\' fill=\'%237C7960\' font-family=\'sans-serif\' font-size=\'15\'>Foto da pasta: ' + src + '</text></svg>') + '\'"></div>';
+        }).join('');
+
+        var dots = listaImagens.length > 1
+            ? '<div class="carousel-dots">' + listaImagens.map(function(_, i) {
+                return '<button class="carousel-dot' + (i === 0 ? ' ativo' : '') + '" data-index="' + i + '"></button>';
+            }).join('') + '</div>'
+            : '';
+
+        var nav = listaImagens.length > 1
+            ? '<button class="carousel-btn prev" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>' +
+              '<button class="carousel-btn next" aria-label="Próxima"><i class="fas fa-chevron-right"></i></button>'
+            : '';
+
+        return '<div class="carousel" data-carousel="' + id + '">' +
+            '<div class="carousel-track">' + slides + '</div>' +
+            nav + dots +
+            '</div>';
+    }
+
+    function initCarousel(el) {
+        if (!el) return;
+        var track = el.querySelector('.carousel-track');
+        var slides = el.querySelectorAll('.carousel-slide');
+        var dots = el.querySelectorAll('.carousel-dot');
+        var prev = el.querySelector('.carousel-btn.prev');
+        var next = el.querySelector('.carousel-btn.next');
+        if (!slides.length || slides.length === 1 || !prev || !next) return;
+
+        var index = 0;
+        var startX = 0;
+
+        function goTo(i) {
+            index = (i + slides.length) % slides.length;
+            track.style.transform = 'translateX(-' + (index * 100) + '%)';
+            dots.forEach(function(d, j) { d.classList.toggle('ativo', j === index); });
+        }
+
+        prev.addEventListener('click', function(e) { e.preventDefault(); goTo(index - 1); });
+        next.addEventListener('click', function(e) { e.preventDefault(); goTo(index + 1); });
+        dots.forEach(function(d) {
+            d.addEventListener('click', function(e) {
+                e.preventDefault();
+                goTo(parseInt(d.dataset.index, 10));
+            });
+        });
+
+        el.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; }, { passive: true });
+        el.addEventListener('touchend', function(e) {
+            var diff = startX - e.changedTouches[0].clientX;
+            if (Math.abs(diff) > 40) goTo(index + (diff > 0 ? 1 : -1));
+        }, { passive: true });
+    }
+
+    function renderizar() {
+        var filtrados = filtroAtivo === 'todos'
+            ? produtos
+            : produtos.filter(function(p) { return p.tipo === filtroAtivo; });
+
+        grid.innerHTML = '';
+        filtrados.forEach(function(p, idx) {
+            var msgWhatsapp = 'Olá! Me encantei pelo produto: *' + p.nome + '*. Gostaria de escolher a essência e fazer meu pedido!';
+            var linkWhats = waLink(msgWhatsapp);
+            
+            var blocoPreco = p.preco
+                ? '<div class="card-preco">R$ ' + Number(p.preco).toLocaleString('pt-BR', { minimumFractionDigits: 2 }) + '</div>'
+                : '';
+
+            var tituloOpcoes = p.aromas ? 'Opções de Aromas:' : 'Opções de Essências:';
+            var listaOpcoes = p.essencias || p.aromas || '';
+
+            var card = document.createElement('article');
+            card.className = 'card';
+            card.innerHTML =
+                criarCarousel('c-' + idx, p.imagens, p.nome) +
+                '<div class="card-body">' +
+                    '<h2 class="card-titulo">' + p.nome + '</h2>' +
+                    '<span class="card-composicao">' + p.composicao + '</span>' +
+                    '<div class="card-essencias">' +
+                        '<strong>' + tituloOpcoes + '</strong>' +
+                        listaOpcoes +
+                    '</div>' +
+                    blocoPreco +
+                    '<a href="' + linkWhats + '" class="btn-pedir" target="_blank">' +
+                        '<i class="fab fa-whatsapp"></i>' +
+                        '<span>Escolher aroma no WhatsApp</span>' +
+                    '</a>' +
+                '</div>';
+
+            grid.appendChild(card);
+            initCarousel(card.querySelector('.carousel'));
+        });
+    }
+
+    filtroBotoes.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            filtroBotoes.forEach(function(b) { b.classList.remove('ativo'); });
+            this.classList.add('ativo');
+            filtroAtivo = this.dataset.tipo;
+            renderizar();
+        });
+    });
+
+    document.getElementById('atendimentoWhatsapp').href = waLink('Olá! Vim pelo catálogo da Mio Dolce e gostaria de ajuda para escolher meus produtos.');
+    document.getElementById('floatWhatsapp').href = waLink('Olá! Vim pelo catálogo da Mio Dolce e gostaria de fazer um pedido.');
+    document.getElementById('ano').textContent = new Date().getFullYear();
+
+    renderizar();
+</script>
+
+</body>
+</html>
