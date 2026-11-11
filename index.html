@@ -2,8 +2,11 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
     <meta name="theme-color" content="#473F2A">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
     <title>Mio Dolce | Produtos Artesanais — Catálogo</title>
     <link rel="icon" href="imagens/logo.png.png">
     <meta name="description" content="Catálogo Mio Dolce Produtos Artesanais. Velas aromatizadas com cera de coco e escalda-pés feitos à mão com carinho.">
@@ -29,23 +32,30 @@
             --whatsapp: #25D366;
             --whatsapp-dark: #1ebe5b;
             --radius: 20px;
-            --transition: 0.3s ease;
+            --transition: 0.25s ease;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            -webkit-text-size-adjust: 100%;
+        }
         
         body {
             font-family: 'Nunito', sans-serif;
             background-color: var(--bg-cream);
             color: var(--brown-dark);
             line-height: 1.6;
+            overflow-x: hidden;
+            width: 100%;
+            padding-bottom: env(safe-area-inset-bottom, 0);
             -webkit-font-smoothing: antialiased;
         }
 
         a { text-decoration: none; color: inherit; }
         img { display: block; max-width: 100%; height: auto; -webkit-user-drag: none; }
-        .container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+        .container { width: 100%; max-width: 1120px; margin: 0 auto; padding: 0 20px; }
 
         /* BARRA FINA SUPERIOR */
         .top-strip {
@@ -53,6 +63,7 @@
             color: var(--beige);
             font-size: 0.8rem;
             padding: 8px 0;
+            padding-top: max(8px, env(safe-area-inset-top, 8px));
             letter-spacing: 0.03em;
         }
         .top-strip-inner {
@@ -74,7 +85,7 @@
 
         /* CABEÇALHO ARTESANAL PREENCHIDO E PROFISSIONAL */
         .header-vitrine {
-            padding: 36px 0 24px;
+            padding: 32px 0 20px;
             background:
                 radial-gradient(circle at 15% 20%, rgba(224, 183, 111, 0.18) 0%, transparent 45%),
                 radial-gradient(circle at 85% 80%, rgba(173, 107, 62, 0.12) 0%, transparent 45%),
@@ -84,11 +95,11 @@
             background: var(--card-bg);
             border: 1px solid rgba(223, 209, 188, 0.9);
             border-radius: 26px;
-            padding: 32px 40px;
+            padding: 30px 36px;
             box-shadow: 0 12px 36px rgba(71, 63, 42, 0.06);
             display: grid;
-            grid-template-columns: 240px 1fr;
-            gap: 40px;
+            grid-template-columns: 230px minmax(0, 1fr);
+            gap: 36px;
             align-items: center;
             position: relative;
             overflow: hidden;
@@ -111,11 +122,13 @@
             align-items: center;
             justify-content: center;
             box-shadow: 0 6px 20px rgba(71, 63, 42, 0.04);
+            width: 100%;
         }
         .logo-img {
-            max-width: 195px;
+            max-width: 185px;
             width: 100%;
             height: auto;
+            object-fit: contain;
             margin: 0 auto;
         }
         .logo-fallback {
@@ -131,6 +144,7 @@
             display: flex;
             flex-direction: column;
             align-items: flex-start;
+            min-width: 0;
         }
         .vitrine-tag {
             display: inline-flex;
@@ -139,7 +153,7 @@
             background: var(--bg-cream);
             border: 1px solid var(--beige);
             color: var(--terracotta);
-            font-size: 0.78rem;
+            font-size: 0.76rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.08em;
@@ -149,7 +163,7 @@
         }
         .vitrine-titulo {
             font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(1.7rem, 2.8vw, 2.25rem);
+            font-size: clamp(1.65rem, 2.8vw, 2.25rem);
             font-weight: 700;
             color: var(--brown-dark);
             line-height: 1.2;
@@ -160,9 +174,9 @@
             font-style: italic;
         }
         .boas-vindas {
-            font-size: 0.98rem;
+            font-size: 0.96rem;
             color: var(--olive);
-            margin-bottom: 22px;
+            margin-bottom: 20px;
             max-width: 640px;
         }
         .boas-vindas strong {
@@ -171,7 +185,7 @@
         }
         .vitrine-pilares {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: 14px;
             width: 100%;
             padding-top: 18px;
@@ -181,6 +195,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            min-width: 0;
         }
         .pilar-icon {
             width: 36px;
@@ -202,27 +217,32 @@
             line-height: 1.2;
         }
         .pilar-texto small {
+            display: block;
             font-size: 0.75rem;
             color: var(--olive);
+            line-height: 1.2;
         }
 
-        /* FILTROS DELICADOS */
+        /* FILTROS RESPONSIVOS */
         .filtros {
-            padding: 12px 0 32px;
+            padding: 12px 0 22px;
             position: sticky;
             top: 0;
             z-index: 50;
-            background: rgba(250, 247, 242, 0.92);
+            background: rgba(250, 247, 242, 0.95);
             backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            box-shadow: 0 2px 10px rgba(71, 63, 42, 0.04);
         }
         .filtro-container {
             display: flex;
             justify-content: center;
+            align-items: center;
             gap: 10px;
             flex-wrap: wrap;
         }
         .filtro-btn {
-            padding: 9px 22px;
+            padding: 10px 22px;
             border: 1px solid var(--beige);
             background: var(--card-bg);
             color: var(--brown-dark);
@@ -232,6 +252,8 @@
             font-size: 0.9rem;
             font-weight: 600;
             transition: var(--transition);
+            min-height: 42px;
+            -webkit-tap-highlight-color: transparent;
         }
         .filtro-btn:hover {
             border-color: var(--terracotta);
@@ -246,12 +268,12 @@
 
         /* GRADE DO CATÁLOGO */
         .catalogo {
-            padding: 10px 0 70px;
+            padding: 16px 0 64px;
         }
         .catalogo-grid {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 28px;
+            gap: 26px;
         }
 
         /* CARD DO PRODUTO */
@@ -259,61 +281,75 @@
             background: var(--card-bg);
             border-radius: var(--radius);
             overflow: hidden;
-            border: 1px solid rgba(223, 209, 188, 0.7);
+            border: 1px solid rgba(223, 209, 188, 0.75);
             box-shadow: 0 8px 24px rgba(71, 63, 42, 0.05);
             transition: transform var(--transition), box-shadow var(--transition);
             display: flex;
             flex-direction: column;
+            min-width: 0;
         }
         .card:hover {
             transform: translateY(-4px);
             box-shadow: 0 14px 32px rgba(71, 63, 42, 0.1);
         }
 
-        /* CARROSSEL DE IMAGENS */
+        /* CARROSSEL DE IMAGENS COMPATÍVEL COM IOS E ANDROID */
         .carousel {
             position: relative;
             width: 100%;
-            height: 290px;
+            height: 270px;
             background-color: #F5EFE6;
             overflow: hidden;
             user-select: none;
             touch-action: pan-y;
+            -webkit-tap-highlight-color: transparent;
         }
         .carousel-track {
             display: flex;
+            width: 100%;
             height: 100%;
             transition: transform 0.35s ease;
+            will-change: transform;
         }
         .carousel-slide {
             min-width: 100%;
+            width: 100%;
+            max-width: 100%;
             height: 100%;
-            flex-shrink: 0;
+            flex: 0 0 100%;
             display: flex;
             align-items: center;
             justify-content: center;
+            overflow: hidden;
+            background-color: #F5EFE6;
         }
         .carousel-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            width: 100% !important;
+            height: 100% !important;
+            max-width: 100% !important;
+            max-height: 100% !important;
+            object-fit: contain !important;
+            object-position: center !important;
+            display: block;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
         }
         .carousel-btn {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            width: 36px;
-            height: 36px;
+            width: 38px;
+            height: 38px;
             border: none;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.92);
             color: var(--brown-dark);
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.8rem;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            font-size: 0.82rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
             opacity: 0;
             transition: opacity var(--transition);
             z-index: 2;
@@ -347,20 +383,21 @@
             border-radius: 4px;
         }
 
-        /* INFORMAÇÕES DO PRODUTO (LIMPO E HUMANIZADO) */
+        /* INFORMAÇÕES DO PRODUTO */
         .card-body {
-            padding: 22px 20px 18px;
+            padding: 20px 18px 18px;
             display: flex;
             flex-direction: column;
             flex: 1;
         }
         .card-titulo {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.35rem;
+            font-size: 1.32rem;
             font-weight: 700;
             color: var(--brown-dark);
             line-height: 1.25;
             margin-bottom: 6px;
+            word-wrap: break-word;
         }
         .card-composicao {
             display: inline-block;
@@ -370,20 +407,21 @@
             margin-bottom: 12px;
         }
         .card-essencias {
-            font-size: 0.88rem;
+            font-size: 0.86rem;
             color: var(--olive);
             background: var(--bg-cream);
             padding: 12px 14px;
             border-radius: 12px;
             margin-bottom: 16px;
             line-height: 1.5;
-            border: 1px solid rgba(223, 209, 188, 0.5);
+            border: 1px solid rgba(223, 209, 188, 0.55);
+            word-wrap: break-word;
         }
         .card-essencias strong {
             color: var(--brown-dark);
             display: block;
             font-size: 0.82rem;
-            margin-bottom: 2px;
+            margin-bottom: 3px;
         }
         .card-preco {
             margin-top: auto;
@@ -401,13 +439,15 @@
             gap: 8px;
             background: var(--whatsapp);
             color: #fff;
-            padding: 12px 16px;
+            padding: 13px 16px;
             border-radius: 50px;
             font-weight: 700;
             font-size: 0.92rem;
             transition: var(--transition);
             width: 100%;
+            min-height: 48px;
             box-shadow: 0 4px 14px rgba(37, 211, 102, 0.25);
+            -webkit-tap-highlight-color: transparent;
         }
         .btn-pedir:hover {
             background: var(--whatsapp-dark);
@@ -415,14 +455,15 @@
         }
         .btn-pedir i {
             font-size: 1.15rem;
+            flex-shrink: 0;
         }
 
         /* MENSAGEM ARTESANAL NO FINAL */
         .nota-artesanal {
             text-align: center;
-            max-width: 620px;
-            margin: 0 auto 60px;
-            padding: 28px 24px;
+            max-width: 640px;
+            margin: 0 auto 56px;
+            padding: 28px 22px;
             background: rgba(223, 209, 188, 0.35);
             border-radius: var(--radius);
             border: 1px solid var(--beige);
@@ -441,13 +482,15 @@
         .btn-duvidas {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 8px;
             background: var(--terracotta);
             color: #fff;
-            padding: 10px 24px;
+            padding: 12px 24px;
             border-radius: 50px;
             font-size: 0.9rem;
             font-weight: 600;
+            min-height: 46px;
             transition: var(--transition);
         }
         .btn-duvidas:hover {
@@ -457,7 +500,7 @@
         /* RODAPÉ SIMPLES */
         footer {
             text-align: center;
-            padding: 28px 20px;
+            padding: 28px 20px max(28px, env(safe-area-inset-bottom, 28px));
             border-top: 1px solid var(--beige);
             font-size: 0.85rem;
             color: var(--olive);
@@ -466,8 +509,8 @@
         /* BOTÃO FLUTUANTE WHATSAPP */
         .whatsapp-float {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
+            bottom: max(18px, calc(env(safe-area-inset-bottom, 12px) + 10px));
+            right: max(16px, env(safe-area-inset-right, 16px));
             z-index: 100;
         }
         .whatsapp-float-btn {
@@ -482,27 +525,39 @@
             font-size: 1.7rem;
             box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
             transition: var(--transition);
+            -webkit-tap-highlight-color: transparent;
         }
         .whatsapp-float-btn:hover {
             transform: scale(1.07);
             background: var(--whatsapp-dark);
         }
 
-        /* RESPONSIVO CELULAR E TABLET */
-        @media (max-width: 960px) {
-            .catalogo-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+        /* TABLET (iPad e Android Tablets) */
+        @media (max-width: 1024px) {
+            .catalogo-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 22px;
+            }
+            .vitrine-banner {
+                grid-template-columns: 200px minmax(0, 1fr);
+                padding: 26px 28px;
+                gap: 26px;
+            }
+        }
+
+        @media (max-width: 820px) {
             .vitrine-banner {
                 grid-template-columns: 1fr;
                 text-align: center;
-                padding: 28px 24px;
-                gap: 22px;
+                padding: 26px 22px;
+                gap: 20px;
             }
             .vitrine-banner::before {
                 width: 100%;
                 height: 5px;
             }
             .logo-box {
-                max-width: 200px;
+                max-width: 180px;
                 margin: 0 auto;
             }
             .vitrine-conteudo {
@@ -512,23 +567,98 @@
                 text-align: left;
             }
         }
+
+        /* CELULAR — iOS (iPhone) e Android */
         @media (max-width: 640px) {
-            .top-strip-inner { gap: 12px; font-size: 0.74rem; }
-            .top-strip span:nth-child(2) { display: none; }
-            .header-vitrine { padding: 20px 0 16px; }
-            .vitrine-pilares { grid-template-columns: 1fr; gap: 12px; }
-            .catalogo-grid { grid-template-columns: 1fr; gap: 22px; }
-            .carousel { height: 270px; }
-            .carousel-btn { opacity: 1; }
-            .filtro-container {
-                flex-wrap: nowrap;
-                justify-content: flex-start;
-                overflow-x: auto;
-                padding-bottom: 4px;
-                scrollbar-width: none;
+            body {
+                padding-bottom: calc(76px + env(safe-area-inset-bottom, 0px));
             }
-            .filtro-container::-webkit-scrollbar { display: none; }
-            .filtro-btn { flex-shrink: 0; }
+            .container {
+                padding: 0 14px;
+            }
+            .top-strip-inner {
+                gap: 12px;
+                font-size: 0.74rem;
+            }
+            .top-strip span:nth-child(2) {
+                display: none;
+            }
+            .header-vitrine {
+                padding: 16px 0 12px;
+            }
+            .vitrine-banner {
+                padding: 22px 16px;
+                border-radius: 20px;
+                gap: 16px;
+            }
+            .logo-box {
+                max-width: 150px;
+                padding: 12px;
+            }
+            .vitrine-titulo {
+                font-size: 1.5rem;
+            }
+            .boas-vindas {
+                font-size: 0.9rem;
+                margin-bottom: 16px;
+            }
+            .vitrine-pilares {
+                grid-template-columns: 1fr;
+                gap: 10px;
+                padding-top: 14px;
+            }
+            .pilar-item {
+                background: var(--bg-cream);
+                padding: 8px 12px;
+                border-radius: 12px;
+                border: 1px solid rgba(223, 209, 188, 0.5);
+            }
+            .filtros {
+                padding: 10px 0 12px;
+            }
+            .filtro-container {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 8px;
+                padding: 0;
+            }
+            .filtro-btn {
+                padding: 8px 14px;
+                font-size: 0.82rem;
+                min-height: 38px;
+                flex: 0 1 auto;
+            }
+            .catalogo {
+                padding: 12px 0 40px;
+            }
+            .catalogo-grid {
+                grid-template-columns: minmax(0, 1fr);
+                gap: 20px;
+            }
+            .carousel {
+                height: 250px;
+            }
+            .carousel-btn {
+                opacity: 1;
+                width: 36px;
+                height: 36px;
+            }
+            .card-body {
+                padding: 18px 16px 16px;
+            }
+            .card-titulo {
+                font-size: 1.25rem;
+            }
+            .btn-duvidas {
+                width: 100%;
+            }
+        }
+
+        /* Dispositivos de toque (iOS / Android) */
+        @media (hover: none) and (pointer: coarse) {
+            .carousel-btn { opacity: 1; }
+            .card:hover { transform: none; }
         }
     </style>
 </head>
@@ -700,7 +830,7 @@
             essencias: "Flor de Figo, Cereja e Avelã, Café, Cascas e Folhas, Lavanda Provence, Jabuticaba",
             preco: 38.00,
             imagens: [
-                "imagens/vela-100g-Ceradecoco.jpg.jpeg"
+                "imagens/velanatal-100g-Ceradecoco.jpg.jpeg"
             ],
             tipo: "Natalino"
         },
@@ -765,8 +895,8 @@
 
         var slides = listaImagens.map(function(src, i) {
             var caminho = urlImagem(src);
-            var lazyAttr = i === 0 ? '' : ' loading="lazy"';
-            return '<div class="carousel-slide"><img src="' + caminho + '" alt="' + nome + '"' + lazyAttr + ' onerror="this.onerror=null;this.src=\'data:image/svg+xml,' + encodeURIComponent('<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'500\' height=\'500\'><rect fill=\'%23F5EFE6\' width=\'500\' height=\'500\'/><text x=\'50%\' y=\'50%\' text-anchor=\'middle\' fill=\'%237C7960\' font-family=\'sans-serif\' font-size=\'15\'>Foto da pasta: ' + src + '</text></svg>') + '\'"></div>';
+            var lazyAttr = i === 0 ? '' : ' loading="lazy" decoding="async"';
+            return '<div class="carousel-slide"><img src="' + caminho + '" alt="' + nome + '"' + lazyAttr + ' style="width: 100% !important; height: 100% !important; max-width: 100% !important; max-height: 100% !important; object-fit: contain !important; background-color: #F5EFE6;" onerror="this.onerror=null;this.src=\'data:image/svg+xml,' + encodeURIComponent('<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'500\' height=\'500\'><rect fill=\'%23F5EFE6\' width=\'500\' height=\'500\'/><text x=\'50%\' y=\'50%\' text-anchor=\'middle\' fill=\'%237C7960\' font-family=\'sans-serif\' font-size=\'15\'>Foto da pasta: ' + src + '</text></svg>') + '\'"></div>';
         }).join('');
 
         var dots = listaImagens.length > 1
