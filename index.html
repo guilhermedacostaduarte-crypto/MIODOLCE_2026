@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="theme-color" content="#DFD1BC">
+    <meta name="theme-color" content="#473F2A">
     <title>Mio Dolce | Produtos Artesanais — Catálogo</title>
     <link rel="icon" href="imagens/logo.png.png">
     <meta name="description" content="Catálogo Mio Dolce Produtos Artesanais. Velas aromatizadas com cera de coco e escalda-pés feitos à mão com carinho.">
@@ -47,36 +47,163 @@
         img { display: block; max-width: 100%; height: auto; -webkit-user-drag: none; }
         .container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
 
-        /* CABEÇALHO ARTESANAL E HUMANIZADO */
+        /* BARRA FINA SUPERIOR */
+        .top-strip {
+            background-color: var(--brown-dark);
+            color: var(--beige);
+            font-size: 0.8rem;
+            padding: 8px 0;
+            letter-spacing: 0.03em;
+        }
+        .top-strip-inner {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 28px;
+            flex-wrap: wrap;
+        }
+        .top-strip span {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+        }
+        .top-strip i {
+            color: var(--gold);
+            font-size: 0.85rem;
+        }
+
+        /* CABEÇALHO ARTESANAL PREENCHIDO E PROFISSIONAL */
         .header-vitrine {
-            text-align: center;
-            padding: 44px 20px 28px;
-            background: linear-gradient(180deg, rgba(223, 209, 188, 0.45) 0%, rgba(250, 247, 242, 0) 100%);
+            padding: 36px 0 24px;
+            background:
+                radial-gradient(circle at 15% 20%, rgba(224, 183, 111, 0.18) 0%, transparent 45%),
+                radial-gradient(circle at 85% 80%, rgba(173, 107, 62, 0.12) 0%, transparent 45%),
+                linear-gradient(180deg, rgba(223, 209, 188, 0.55) 0%, rgba(250, 247, 242, 0) 100%);
+        }
+        .vitrine-banner {
+            background: var(--card-bg);
+            border: 1px solid rgba(223, 209, 188, 0.9);
+            border-radius: 26px;
+            padding: 32px 40px;
+            box-shadow: 0 12px 36px rgba(71, 63, 42, 0.06);
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: 40px;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .vitrine-banner::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--gold), var(--terracotta));
+        }
+        .logo-box {
+            background: #FFFFFF;
+            border: 1px solid rgba(223, 209, 188, 0.6);
+            border-radius: 20px;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 20px rgba(71, 63, 42, 0.04);
         }
         .logo-img {
-            max-width: 190px;
+            max-width: 195px;
+            width: 100%;
             height: auto;
-            margin: 0 auto 14px;
+            margin: 0 auto;
         }
         .logo-fallback {
             display: none;
             font-family: 'Cormorant Garamond', serif;
-            font-size: 2.6rem;
+            font-size: 2.2rem;
             font-weight: 700;
             color: var(--brown-dark);
             letter-spacing: 0.08em;
-            margin-bottom: 8px;
+            text-align: center;
+        }
+        .vitrine-conteudo {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .vitrine-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--bg-cream);
+            border: 1px solid var(--beige);
+            color: var(--terracotta);
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 5px 14px;
+            border-radius: 50px;
+            margin-bottom: 12px;
+        }
+        .vitrine-titulo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.7rem, 2.8vw, 2.25rem);
+            font-weight: 700;
+            color: var(--brown-dark);
+            line-height: 1.2;
+            margin-bottom: 10px;
+        }
+        .vitrine-titulo span {
+            color: var(--terracotta);
+            font-style: italic;
         }
         .boas-vindas {
-            max-width: 540px;
-            margin: 0 auto;
-            font-size: 1rem;
+            font-size: 0.98rem;
             color: var(--olive);
-            font-weight: 400;
+            margin-bottom: 22px;
+            max-width: 640px;
         }
         .boas-vindas strong {
             color: var(--terracotta);
             font-weight: 700;
+        }
+        .vitrine-pilares {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            width: 100%;
+            padding-top: 18px;
+            border-top: 1px solid rgba(223, 209, 188, 0.6);
+        }
+        .pilar-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .pilar-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: var(--bg-cream);
+            border: 1px solid var(--beige);
+            color: var(--terracotta);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+        .pilar-texto strong {
+            display: block;
+            font-size: 0.84rem;
+            color: var(--brown-dark);
+            line-height: 1.2;
+        }
+        .pilar-texto small {
+            font-size: 0.75rem;
+            color: var(--olive);
         }
 
         /* FILTROS DELICADOS */
@@ -364,10 +491,32 @@
         /* RESPONSIVO CELULAR E TABLET */
         @media (max-width: 960px) {
             .catalogo-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+            .vitrine-banner {
+                grid-template-columns: 1fr;
+                text-align: center;
+                padding: 28px 24px;
+                gap: 22px;
+            }
+            .vitrine-banner::before {
+                width: 100%;
+                height: 5px;
+            }
+            .logo-box {
+                max-width: 200px;
+                margin: 0 auto;
+            }
+            .vitrine-conteudo {
+                align-items: center;
+            }
+            .vitrine-pilares {
+                text-align: left;
+            }
         }
-        @media (max-width: 600px) {
-            .header-vitrine { padding: 32px 16px 20px; }
-            .logo-img { max-width: 160px; }
+        @media (max-width: 640px) {
+            .top-strip-inner { gap: 12px; font-size: 0.74rem; }
+            .top-strip span:nth-child(2) { display: none; }
+            .header-vitrine { padding: 20px 0 16px; }
+            .vitrine-pilares { grid-template-columns: 1fr; gap: 12px; }
             .catalogo-grid { grid-template-columns: 1fr; gap: 22px; }
             .carousel { height: 270px; }
             .carousel-btn { opacity: 1; }
@@ -385,15 +534,57 @@
 </head>
 <body>
 
+<div class="top-strip">
+    <div class="container top-strip-inner">
+        <span><i class="fas fa-leaf"></i> Cera de Coco 100% Vegetal</span>
+        <span><i class="fas fa-hand-holding-heart"></i> Produção Artesanal Feita à Mão</span>
+        <span><i class="fab fa-whatsapp"></i> Pedidos Direto pelo WhatsApp</span>
+    </div>
+</div>
+
 <header class="header-vitrine">
     <div class="container">
-        <!-- Coloque a imagem da sua logo na pasta imagens com o nome logo.png.png -->
-        <img src="imagens/logo.png.png" alt="Mio Dolce Produtos Artesanais" class="logo-img" onerror="this.style.display='none'; document.getElementById('logoFallback').style.display='block';">
-        <div id="logoFallback" class="logo-fallback">MIO DOLCE</div>
-        
-        <p class="boas-vindas">
-            Feito à mão com carinho para perfumar, acolher e transformar os seus momentos de pausa em um ritual de <strong>autocuidado</strong>.
-        </p>
+        <div class="vitrine-banner">
+            <div class="logo-box">
+                <!-- Coloque a imagem da sua logo na pasta imagens com o nome logo.png.png -->
+                <img src="imagens/logo.png.png" alt="Mio Dolce Produtos Artesanais" class="logo-img" onerror="this.style.display='none'; document.getElementById('logoFallback').style.display='block';">
+                <div id="logoFallback" class="logo-fallback">MIO DOLCE</div>
+            </div>
+            
+            <div class="vitrine-conteudo">
+                <span class="vitrine-tag"><i class="fas fa-spa"></i> Atelier de Aromas & Bem-Estar</span>
+                <h1 class="vitrine-titulo">
+                    Aromas que abraçam o seu lar e renovam as suas <span>energias</span>
+                </h1>
+                <p class="boas-vindas">
+                    Feito à mão com carinho para perfumar, acolher e transformar os seus momentos de pausa em um ritual de <strong>autocuidado</strong>.
+                </p>
+                
+                <div class="vitrine-pilares">
+                    <div class="pilar-item">
+                        <div class="pilar-icon"><i class="fas fa-fire"></i></div>
+                        <div class="pilar-texto">
+                            <strong>Queima Limpa</strong>
+                            <small>Cera vegetal de coco</small>
+                        </div>
+                    </div>
+                    <div class="pilar-item">
+                        <div class="pilar-icon"><i class="fas fa-wind"></i></div>
+                        <div class="pilar-texto">
+                            <strong>Aromas Exclusivos</strong>
+                            <small>Escolha sua essência</small>
+                        </div>
+                    </div>
+                    <div class="pilar-item">
+                        <div class="pilar-icon"><i class="fas fa-gift"></i></div>
+                        <div class="pilar-texto">
+                            <strong>Feito com Amor</strong>
+                            <small>Acabamento delicado</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </header>
 
